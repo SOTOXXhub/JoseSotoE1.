@@ -10,12 +10,12 @@ namespace Trabajo
         public int tileIndex;
         public Vector2Int boardPosition;
     }
-
     public class Tile : MonoBehaviour
     {
         BoardManager boardManager;
         FTileData tileData;
         public Sprite[] sprites = new Sprite[5];
+        public int tileIndex {  get { return tileData.tileIndex; } }
 
         void Start()
         {
@@ -28,7 +28,8 @@ namespace Trabajo
         }
         public void DestroyTile()
         {
-            Destroy(gameObject);
+            Object.Destroy(gameObject, 1.2f); 
+            
         }
         public void Initialize(BoardManager BoardManagerReference,Vector2Int NewBoardPosition)
         {
