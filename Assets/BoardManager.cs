@@ -31,6 +31,7 @@ namespace Trabajo
 
                 if (board[x,tileData.boardPosition.y].tileIndex == tileData.tileIndex)
                 {
+
                     board[x, tileData.boardPosition.y].DestroyTile();
                 }
             }
