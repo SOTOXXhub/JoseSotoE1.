@@ -20,57 +20,8 @@ namespace Trabajo
         public void DestroyTile(FTileData tileData)
         {
             Debug.Log(tileData.boardPosition);
-            //right------------------------------------------------------------------
-            for (int x = tileData.boardPosition.x; x < boardSize.x; x++)
-            {
-                if (board[x, tileData.boardPosition.y] == null) break;
-                if (board[x, tileData.boardPosition.y].tileIndex != tileData.tileIndex) break;
 
-                    if (board[x,tileData.boardPosition.y].tileIndex==tileData.tileIndex)
-                    {
-                    board[x, tileData.boardPosition.y].DestroyTile();
-                    }
-
-            }
-            //left-------------------------------------------------------------------
-            for (int x = tileData.boardPosition.x; x >= 0; x--)
-            {
-                if (board[x, tileData.boardPosition.y] == null) break;
-                if (board[x, tileData.boardPosition.y].tileIndex != tileData.tileIndex) break;
-
-                    if (board[x, tileData.boardPosition.y].tileIndex == tileData.tileIndex)
-                    {
-                    board[x, tileData.boardPosition.y].DestroyTile();
-                    }
-            }
-            //up-------------------------------------------------------------------
-            for (int y = tileData.boardPosition.y; y < boardSize.y; y++)
-            {
-                if (board[tileData.boardPosition.x, y] == null) break;
-                if (board[tileData.boardPosition.x, y].tileIndex != tileData.tileIndex) break;
-
-                    if (board[tileData.boardPosition.x, y].tileIndex == tileData.tileIndex)
-                    {
-                    board[tileData.boardPosition.x, y ].DestroyTile();
-                    }
-            }
-
-            //down------------------------------------------------------------------
-            for (int y = tileData.boardPosition.y; y >= 0 ; y--)
-            {
-                if (board[tileData.boardPosition.x, y] == null) break;
-                if (board[tileData.boardPosition.x, y].tileIndex != tileData.tileIndex) break;
-
-                    if (board[tileData.boardPosition.x, y].tileIndex == tileData.tileIndex)
-                    {
-                    board[tileData.boardPosition.x, y].DestroyTile();
-                    }
-            }
             board[tileData.boardPosition.x, tileData.boardPosition.y].DestroyTile();
-        }
-        void Refill()
-        {
-
         }
         void InitializeBoard()
         {
