@@ -12,6 +12,9 @@ namespace Trabajo
 
         public float tileOffset =1.5f;
 
+        public Vector2Int boardPosition;
+        FTileData tileData;
+
         Tile[,] board;
         void Start()
         {
@@ -20,7 +23,50 @@ namespace Trabajo
         public void DestroyTile(FTileData tileData)
         {
             Debug.Log(tileData.boardPosition);
+            //derecha----------------------------------------------------------
+            for (int x = tileData.boardPosition.x; x < boardSize.x; x++)
+            {
+                if (board[x,tileData.boardPosition.y] == null) break;
+                if (board[x,tileData.boardPosition.y].tileIndex != tileData.tileIndex) break;
 
+                if (board[x,tileData.boardPosition.y].tileIndex == tileData.tileIndex)
+                {
+                    board[x, tileData.boardPosition.y].DestroyTile();
+                }
+            }
+            //izquierda-------------------------------------------------------
+            for (int x = tileData.boardPosition.x; x >=0;  x--)
+            {
+                if (board[x,tileData.boardPosition.y] == null) break;
+                if (board[x,tileData.boardPosition.y].tileIndex != tileData.tileIndex) break;
+
+                if (board[x, tileData.boardPosition.y].tileIndex == tileData.tileIndex)
+                {
+                    board[x, tileData.boardPosition.y].DestroyTile();
+                }
+            }
+            //arriba----------------------------------------------------------
+            for (int y = tileData.boardPosition.y; y < boardSize.y; y++)
+            {
+                if (board[tileData.boardPosition.x, y] == null) break;
+                if (board[tileData.boardPosition.x, y].tileIndex != tileData.tileIndex) break;
+
+                if (board[tileData.boardPosition.x,y].tileIndex == tileData.tileIndex)
+                {
+                    board[tileData.boardPosition.x,y].DestroyTile();
+                }
+            }
+            //abajo-----------------------------------------------------------
+            for (int y = tileData.boardPosition.y; y >=0; y--)
+            {
+                if (board[tileData.boardPosition.x, y] == null) break;
+                if (board[tileData.boardPosition.x, y].tileIndex != tileData.tileIndex) break;
+              
+                if (board[tileData.boardPosition.x, y].tileIndex == tileData.tileIndex)
+                {
+                    board[tileData.boardPosition.x, y].DestroyTile();
+                }
+            }
             board[tileData.boardPosition.x, tileData.boardPosition.y].DestroyTile();
         }
         void InitializeBoard()

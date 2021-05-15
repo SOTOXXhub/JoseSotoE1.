@@ -16,7 +16,7 @@ namespace Trabajo
         BoardManager boardManager;
         FTileData tileData;
         public Sprite[] sprites = new Sprite[5];
-
+        public int tileIndex { get { return tileData.tileIndex; } }
         void Start()
         {
         
@@ -26,6 +26,7 @@ namespace Trabajo
         {
             boardManager.DestroyTile(tileData);
         }
+
         public void DestroyTile()
         {
             Destroy(gameObject);
