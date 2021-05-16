@@ -17,31 +17,33 @@ namespace Trabajo
         FTileData tileData;
         public Sprite[] sprites = new Sprite[5];
         public int tileIndex { get { return tileData.tileIndex; } }
-        void Start()
-        {
-        
-        }
 
         private void OnMouseDown()
         {
             boardManager.Refill();
-
+            boardManager.Webito();
+            StartCoroutine(refillDelay());
             boardManager.DestroyTile1(tileData);
-           
-            boardManager.board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 8].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 9].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 1, tileData.boardPosition.y = 9].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 1].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 0].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 1, tileData.boardPosition.y = 0].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 6, tileData.boardPosition.y = 9].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 9].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 8].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 6, tileData.boardPosition.y = 0].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 0].DestroyTile();
-            boardManager.board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 1].DestroyTile();
-            
+            boardManager.lujo();
+
+
         }
+
+
+
+
+        IEnumerator refillDelay()
+        {
+            yield return new WaitForSeconds(1f);
+
+            boardManager.lujo();
+
+
+
+
+
+        }
+
         
         public void DestroyTile()
         {
