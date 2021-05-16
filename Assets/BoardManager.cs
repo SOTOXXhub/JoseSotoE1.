@@ -15,12 +15,56 @@ namespace Trabajo
         public Vector2Int boardPosition;
         FTileData tileData;
 
-        Tile[,] board;
+        public Tile[,] board;
+
         void Start()
         {
             InitializeBoard();
+            board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 8].DestroyTile();
+            board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 9].DestroyTile();
+            board[tileData.boardPosition.x = 1, tileData.boardPosition.y = 9].DestroyTile();
+            board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 1].DestroyTile();
+            board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 0].DestroyTile();
+            board[tileData.boardPosition.x = 1, tileData.boardPosition.y = 0].DestroyTile();
+            board[tileData.boardPosition.x = 6, tileData.boardPosition.y = 9].DestroyTile();
+            board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 9].DestroyTile();
+            board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 8].DestroyTile();
+            board[tileData.boardPosition.x = 6, tileData.boardPosition.y = 0].DestroyTile();
+            board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 0].DestroyTile();
+            board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 1].DestroyTile();
+
         }
-        public void DestroyTile(FTileData tileData)
+        
+        public void Refill()
+        {
+
+            Vector3 SpawnPosition = Vector3.zero;
+            Vector2Int boardPosition = Vector2Int.zero;
+            int ran;
+            for (int x = 0; x < boardSize.x; x++)
+            {
+                for (int y = 0; y < boardSize.y; y++)
+                {
+                    if (board[x, y] == null)
+                    {
+                        SpawnPosition.x = x * tileOffset;
+                        SpawnPosition.y = y * tileOffset;
+                        boardPosition.x = x;
+                        boardPosition.y = y;
+                        ran = Random.Range(0, 100) > 98 ? 1 : 0;
+
+                        GameObject tile = Instantiate(tilePrefab, SpawnPosition, Quaternion.identity);
+                        tile.GetComponent<Tile>().Initialize(this, boardPosition);
+
+                        board[x, y] = tile.GetComponent<Tile>();
+
+
+
+                    }
+                }
+            }
+        }
+        public void DestroyTile1(FTileData tileData)
         {
             Debug.Log(tileData.boardPosition);
             //derecha----------------------------------------------------------
@@ -30,10 +74,10 @@ namespace Trabajo
                 if (board[x,tileData.boardPosition.y].tileIndex != tileData.tileIndex) break;
 
                 if (board[x,tileData.boardPosition.y].tileIndex == tileData.tileIndex)
-                {
-
+                { 
                     board[x, tileData.boardPosition.y].DestroyTile();
                 }
+
             }
             //izquierda-------------------------------------------------------
             for (int x = tileData.boardPosition.x; x >=0;  x--)
@@ -43,6 +87,7 @@ namespace Trabajo
 
                 if (board[x, tileData.boardPosition.y].tileIndex == tileData.tileIndex)
                 {
+                    
                     board[x, tileData.boardPosition.y].DestroyTile();
                 }
             }
@@ -54,6 +99,7 @@ namespace Trabajo
 
                 if (board[tileData.boardPosition.x,y].tileIndex == tileData.tileIndex)
                 {
+                    
                     board[tileData.boardPosition.x,y].DestroyTile();
                 }
             }
@@ -65,11 +111,14 @@ namespace Trabajo
               
                 if (board[tileData.boardPosition.x, y].tileIndex == tileData.tileIndex)
                 {
+                    
                     board[tileData.boardPosition.x, y].DestroyTile();
                 }
             }
             board[tileData.boardPosition.x, tileData.boardPosition.y].DestroyTile();
         }
+       
+        
         void InitializeBoard()
         {
             Vector3 SpawnPosition = Vector3.zero;
@@ -85,9 +134,11 @@ namespace Trabajo
                     boardPosition.y = y;
                    GameObject tile= Instantiate(tilePrefab,SpawnPosition, Quaternion.identity);
                     tile.GetComponent<Tile>().Initialize(this,boardPosition);
-
-                    board[x, y] = tile.GetComponent<Tile>();
+                    board[x, y]  =  tile.GetComponent<Tile>();
+                    
                 }
+                
+                    
             }
         }
     }
