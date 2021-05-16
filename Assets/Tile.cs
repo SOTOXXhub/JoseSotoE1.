@@ -24,8 +24,10 @@ namespace Trabajo
 
         private void OnMouseDown()
         {
-            boardManager.DestroyTile1(tileData);
             boardManager.Refill();
+
+            boardManager.DestroyTile1(tileData);
+           
             boardManager.board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 8].DestroyTile();
             boardManager.board[tileData.boardPosition.x = 0, tileData.boardPosition.y = 9].DestroyTile();
             boardManager.board[tileData.boardPosition.x = 1, tileData.boardPosition.y = 9].DestroyTile();
@@ -38,12 +40,12 @@ namespace Trabajo
             boardManager.board[tileData.boardPosition.x = 6, tileData.boardPosition.y = 0].DestroyTile();
             boardManager.board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 0].DestroyTile();
             boardManager.board[tileData.boardPosition.x = 7, tileData.boardPosition.y = 1].DestroyTile();
+            
         }
-
+        
         public void DestroyTile()
         {
-            Destroy(gameObject);
-            
+            Destroy(gameObject);  
 
         }
         public void Initialize(BoardManager BoardManagerReference,Vector2Int NewBoardPosition)
